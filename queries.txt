@@ -1,0 +1,63 @@
+mutation{
+  register(registerInput:{
+    username:"user"
+    password:"123456"
+    confirmPassword:"123456"
+    email:"user@gmail.com"
+  })
+  {
+    id 
+    email
+    token
+    username
+    createdAt
+  }
+}
+
+--------------------------------
+
+mutation{
+  register(registerInput:{
+    username:"Amit"
+    password:"123456"
+    confirmPassword:"123456"
+    email:"amit@gmail.com"
+  })
+  {
+    id 
+    email
+    token
+    username
+    createdAt
+  }
+}
+
+
+token:  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGM2YzRiMjkxNTFkNDA1Y2I0NjA2OSIsImVtYWlsIjoiYW1pdEBnbWFpbC5jb20iLCJ1c2VybmFtZSI6IkFtaXQiLCJpYXQiOjE2NTMzNjk5MzEsImV4cCI6MTY1MzM3MTM3MX0.ZOsXUpijsgDV-qFJqKQdx_tvlDPaR3h36poxGsi-kUU"
+
+--------------------------------
+
+
+mutation{
+  login(username:"",password:""){
+    id
+    email
+    token
+    username
+    createdAt
+  }
+}
+
+--------------------------------
+
+query{
+ getPosts{
+  id
+  body
+ createdAt
+  username
+
+}
+}
+
+---------------------------------

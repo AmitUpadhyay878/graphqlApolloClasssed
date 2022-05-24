@@ -1,28 +1,24 @@
 const {ApolloServer}  = require('apollo-server')
-const gql =require('graphql-tag')
+const mongoose = require('mongoose')
+const {ApolloServerPluginLandingPageGraphQLPlayground}=require ('apollo-server-core')
+const{MONGODB} =require('./config.js')
+// require('dotenv').config()
 
-const typeDefs=gql`
-        type Query{
-            hello:String!
-        } 
-`
+const typeDefs = require('./graphql/typeDefs')
+const resolvers = require('./graphql/resolvers')
 
-// Logic of typeDef
-const resolvers = {
-    Query:{
-        hello:()=>{
 
-        }
-    }
-
-}
 
 
 const server  = new ApolloServer({
     typeDefs:typeDefs,
-    resolvers:resolvers
+    resolvers:resolvers,
+    plugins:[
+        ApolloServerPluginLandingPageGraphQLPlayground()
+    ]
 })
 
-server.listen({port:5000}).then(res=>{
-        console.log(`server is Running on ${res.url}`)
-})
+mongoose.connect(MONGODB,{useNewUrlParser:true})
+.then(()=>{return server.listen({port:5000})})
+.then((res)=>{console.log(`server is Running on ${res.url}`)})
+
